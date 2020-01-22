@@ -1,0 +1,201 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- CND for materlialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
+    <title>Smart-Parking</title>
+    <style>
+    *{
+      box-sizing: border-box;
+    }
+    nav{
+      background-color: #659dbd;
+    }
+    </style>
+</head>
+<body class="grey lighten-3"">
+
+  <!-- NAVBAR -->
+  <nav class="z-depth-0 lighten-4">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">
+        <div style="width: auto;color: black;">Smart Parking</div>
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li class="logged-in white" style="display: none;">
+            <a href="#" class="grey-text modal-trigger text-darken-2" data-target="modal-account">Account</a>
+          </li>
+          
+          <li class="admin white" style="display: none;">
+            <a href="#" class="grey-text modal-trigger text-darken-2" data-target="modal-create">Setup Location</a>
+          </li>
+          <li class="logged-in white" style="display: none;">
+            <a href="#" class="red-text text-darken-2" id="logout">Logout</a>
+          </li>
+          <li class="logged-out white" style="display: none;">
+            <a href="#" class="grey-text modal-trigger text-darken-2" data-target="modal-login">Login</a>
+          </li>
+          <li class="logged-out white" style="display: none;">
+            <a href="#" class="grey-text modal-trigger text-darken-2" data-target="modal-signup">Sign up</a>
+          </li>
+        </span>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ADMIN ACTIONS -->
+  <!-- <form class="center-align admin-actions admin" style="margin: 40px auto; max-width: 300px; display: none;">
+    <input type="email" placeholder="User email" id="admin-email" required />
+    <button class="btn-small yellow darken-2 z-depth-0">Make admin</button>
+  </form> -->
+
+  
+
+  <!-- SIGN UP MODAL -->
+  <div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <h4>Sign up</h4><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="text" id="signup-name" required />
+          <label for="signup-name">Name</label>
+        </div>
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="tel" id="signup-number" required />
+          <label for="signup-number">Mobile Number</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Choose password</label>
+        </div>
+        <div class="input-field">
+          <p>
+            <label>
+              <input type="checkbox"id="signup-role"/>
+              <span>Admin</span>
+            </label>
+          </p>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0 center-align">Sign up</button>
+        <p class="error pink-text center-align"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+        <p class="error pink-text center-align"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ACCOUNT MODAL -->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Account details</h4><br />
+      <div class="account-details"></div>
+    </div>
+  </div>
+
+  <!-- Setup Location MODAL -->
+  <div id="modal-create" class="modal">
+    <div class="modal-content">
+      <h4>Setup Location</h4><br />
+      <form id="setup-form">
+        <div class="input-field">
+          <input type="text" id="name" required>
+          <label for="name">Location Name</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="latitude" required>
+          <label for="latitude">Latitude</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="longitude" required>
+          <label for="longitude">Longitude</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="imgUrl" required>
+          <label for="imgUrl"> Image Url</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="totalSlots" required> 
+          <label for="totalSlots"> Total Slots</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Setup</button>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- BOOKING MODAL -->
+
+  <div id="modal-book" class="modal">
+    <div class="modal-content">
+      <h4>Book a slot</h4><br />
+      <form id="book-form">
+        <div class="input-field">
+          <input type="time" id="booking-time" required>
+          <label for="booking-time">Time</label>
+          
+        </div>
+        <p class="error pink-text center-align"></p>
+        <button class="btn yellow darken-2 z-depth-0">Book</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- GUIDE LIST -->
+  <div class="container" style="margin-top: 40px;">
+    
+      <div class="row guides z-depth-0" style="border: none;"></div>
+    
+  </div>
+  
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-functions.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDd55HkH5d1I1lol4Qht-VhSsa4_Id04ss",
+      authDomain: "kpit-260310.firebaseapp.com",
+      databaseURL: "https://kpit-260310.firebaseio.com",
+      projectId: "kpit-260310"
+    };
+    firebase.initializeApp(config);
+    
+    // make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    db.settings({ timestampsInSnapshots: true });
+    const functions = firebase.functions();
+  </script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="scripts/index.js"></script>
+  <script src="scripts/auth.js"></script>
+</body>
+</html>
